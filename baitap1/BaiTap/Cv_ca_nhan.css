@@ -1,0 +1,41 @@
+body{
+    background-color: gray;
+}
+.container-left{
+    width: 25%;
+    float: left;
+    border: 1px solid black;
+    background-color: white;
+}
+.personal-info{
+    padding: 20px;
+}
+.personal-info h1{
+    text-align: center;
+}
+.personal-info .personal-info-picture{
+    width: 20px;
+}
+.personal-info span{
+    padding-left: 10px;
+}
+.container-left h3{
+    padding-left: 20px;
+}
+.container-left img{
+    width: 100%;
+}
+.container-right{
+    width: 70%;
+    float: left;
+    border: 1px solid black;
+    margin-left: 2%;
+    background-color: white;
+}
+.work-experience{
+    padding: 20px;
+}
+.work-experience-picture{
+    width: 32px;
+    padding-right: 10px;
+}
