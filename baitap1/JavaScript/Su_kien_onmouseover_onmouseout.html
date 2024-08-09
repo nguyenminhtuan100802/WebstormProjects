@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="demo">Minh Tuan Frontend</p>
+    <script>
+        var demo = document.getElementById("demo");
+        demo.addEventListener("mouseover", ChangeColorRed);
+        demo.addEventListener("mouseout", ChangeColorBlack)
+
+        function ChangeColorRed(){
+            document.getElementById("demo").style.color = "red";
+        }
+        function ChangeColorBlack(){
+            document.getElementById("demo").style.color = "black";
+        }
+    </script>
+</body>
+</html>
