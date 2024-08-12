@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>What is the “official” name of JavaScript?</p>
+    <input class="answer" type="text" placeholder="Write your answer:">
+    <script>
+        let answer = document.querySelector(".answer");
+        answer.addEventListener("keyup", function (){
+            if(answer.value === "ECMAScript"){
+                alert("Đúng rồi!!!!")
+            }
+            else {
+                alert("Sai rồi")
+            }
+        });
+    </script>
+</body>
+</html>
