@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: fit-content;
+            margin: 100px auto;
+            background-color: orange;
+            padding-bottom: 10px;
+        }
+        .screen_display{
+            width: 300px;
+            height: 200px;
+            background-color: powderblue;
+            text-align: center;
+        }
+        .display{
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+        .button{
+            margin: 10px auto;
+            width: fit-content;
+        }
+        .button button{
+            font-size: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="screen_display">
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+        </div>
+
+        <div class="button">
+            <button value="KÉO">KÉO</button>
+            <button value="BÚA">BÚA</button>
+            <button value="BAO">BAO</button>
+        </div>
+    </div>
+
+    <script>
+        let buttons = document.querySelectorAll("button");
+        let displays = document.querySelectorAll(".display");
+        let computerRandom = [ "KÉO", "BÚA", "BAO"]; //Array
+        displays[1].style.color = "red";
+        displays[2].style.color = "blue";
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function (){
+                // console.log(buttons[i].value)
+                // random cho máy tính
+                let computerChoice = computerRandom[Math.floor(Math.random() * 3)]
+                displays[1].innerHTML = "Máy tính: " + computerChoice;
+
+                // xuất lên màn hình
+                if (buttons[i].value === "KÉO"){
+                    displays[2].innerHTML = "Người chơi: KÉO";
+                }
+                else if(buttons[i].value === "BÚA"){
+                    displays[2].innerHTML = "Người chơi: BÚA";
+                }
+                else{
+                    displays[2].innerHTML = "Người chơi: BAO";
+                }
+
+                // kiểm tra thắng thua
+                if (buttons[i].value === computerChoice){
+                    displays[0].innerHTML = "HÒA";
+                }
+                else if (buttons[i].value === "KÉO" && computerChoice === "BÚA"){
+                    displays[0].innerHTML = "THUA";
+                }
+                else if (buttons[i].value === "KÉO" && computerChoice === "BAO"){
+                    displays[0].innerHTML = "THẮNG";
+                }
+                else if (buttons[i].value === "BÚA" && computerChoice === "KÉO"){
+                    displays[0].innerHTML = "THẮNG";
+                }
+                else if (buttons[i].value === "BÚA" && computerChoice === "BAO"){
+                    displays[0].innerHTML = "THUA";
+                }
+                else if (buttons[i].value === "BAO" && computerChoice === "KÉO"){
+                    displays[0].innerHTML = "THUA";
+                }
+                else if (buttons[i].value === "BAO" && computerChoice === "BÚA"){
+                    displays[0].innerHTML = "THẮNG";
+                }
+            });
+
+
+            // style for button
+            buttons[i].addEventListener("mouseover", function (){
+               buttons[i].style.backgroundColor = "black";
+               buttons[i].style.color = "white";
+            });
+            buttons[i].addEventListener("mouseout", function (){
+                buttons[i].style.backgroundColor = "white";
+                buttons[i].style.color = "black";
+            });
+        }
+
+    </script>
+</body>
+</html>
