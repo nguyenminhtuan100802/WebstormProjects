@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button{
+            position: absolute;
+            top: 250px;
+        }
+    </style>
+</head>
+<body>
+    <img class="ball" src="../../../Images/ball.jpg" alt=""> <br>
+    <button>Click to move</button>
+
+    <script>
+        let ball = document.querySelector(".ball");
+        let clickButton = document.querySelector("button");
+
+        clickButton.addEventListener("click", () =>{
+            ball.style.position = "absolute"
+            const left =  ball.style.left || 0;       // get left if it exists or default to zero
+            ball.style.left = `${parseInt(left, 10) + 100}px`;   // change the left value to an int and add 100
+        });
+
+
+    </script>
+</body>
+</html>
