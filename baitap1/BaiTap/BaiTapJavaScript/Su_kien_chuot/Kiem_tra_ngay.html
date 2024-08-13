@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input class="input_month" type="text" placeholder="Điền tháng bạn xem ngày(1, 2, 3)" size="30">
+    <p class="result"></p>
+
+<script>
+    let inputMonth = document.querySelector(".input_month");
+    let result = document.querySelector(".result");
+
+    inputMonth.addEventListener("keyup", function (){
+        switch (Number(inputMonth.value)) {
+            case 1:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 2:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 28 hoặc 29 ngày";
+                break;
+            case 3:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 4:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 30 ngày";
+                break;
+            case 5:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 6:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 30 ngày";
+                break;
+            case 7:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 8:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 9:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 30 ngày";
+                break;
+            case 10:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            case 11:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 30 ngày";
+                break;
+            case 12:
+                result.innerHTML = "Tháng " + inputMonth.value + " có 31 ngày";
+                break;
+            default:
+                result.innerHTML = "Tháng không hơp lệ";
+        }
+    });
+</script>
+</body>
+</html>
