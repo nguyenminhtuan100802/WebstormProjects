@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<img class="picture" src="../../../Images/Dog.webp" alt="">
+
+
+
+<script>
+    let picture = document.querySelector(".picture");
+    let x = 0, y = 0, step = 5;
+
+    window.addEventListener(
+        "keydown",
+        (event) => {
+            let keyPressed = event.key;
+            console.log(keyPressed)
+            switch (keyPressed) {
+                case "ArrowDown":
+                    // Do something for "down arrow" key press.
+                    picture.style.position = "absolute"
+                    y = y + step;
+                    picture.style.top = y + "px";
+                    console.log(picture.style.top);
+                    break;
+                case "ArrowUp":
+                    // Do something for "up arrow" key press.
+                    picture.style.position = "absolute"
+                    y = y - step;
+                    picture.style.top = y + "px";
+                    console.log(picture.style.top);
+                    break;
+                case "ArrowLeft":
+                    // Do something for "left arrow" key press.
+                    picture.style.position = "absolute"
+                    x = x - step;
+                    picture.style.left = x + "px";
+                    console.log(picture.style.left);
+                    break;
+                case "ArrowRight":
+                    // Do something for "right arrow" key press.
+                    picture.style.position = "absolute"
+                    x = x + step;
+                    picture.style.left = x + "px";
+                    console.log(picture.style.left);
+                    break;
+            }
+        }
+    );
+
+</script>
+</body>
+</html>
