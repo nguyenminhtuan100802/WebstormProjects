@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            margin: 100px auto;
+            width: fit-content;
+        }
+        .button_yes{
+            background-color: greenyellow;
+            cursor: pointer;
+        }
+        .button_no{
+            background-color: red;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Do you love me?</p>
+        <button class="button_yes">Yes</button>
+        <button class="button_no">No</button>
+    </div>
+
+<script>
+    let buttonNo = document.querySelector(".button_no");
+    let buttonYes = document.querySelector(".button_yes");
+    // console.log(window.innerWidth + " " + window.innerHeight);
+    buttonYes.addEventListener("click", function (){
+        alert("I love you too <3")
+    });
+    buttonNo.addEventListener("mouseover", function (){
+        let x = Math.floor(Math.random() * window.innerWidth) - 20;
+        let y = Math.floor(Math.random() * window.innerHeight) - 20;
+
+        buttonNo.style.position = "absolute"
+        buttonNo.style.left = x + "px";
+        buttonNo.style.top = y + "px";
+    });
+
+</script>
+</body>
+</html>
