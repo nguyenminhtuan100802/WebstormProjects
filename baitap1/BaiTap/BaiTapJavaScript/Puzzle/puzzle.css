@@ -1,0 +1,32 @@
+.container{
+    /*background-color: red;*/
+    width: fit-content;
+    margin: 0px auto;
+}
+p{
+    text-align: center;
+}
+.board{
+    width: 185px;
+    height: 200px;
+    background-color: powderblue;
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pieces{
+    width: 400px;
+    height: 100px;
+    background-color: orange;
+}
+.board img {
+    border: 1px solid black;
+    width: 35px;
+    margin: 0px auto;
+}
+.pieces img {
+    border: 1px solid black;
+    width: 35px;
+    margin: 0px auto;
+
+}

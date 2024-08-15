@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    button{
+      width: 35px;
+      height: 35px;
+      background-color: gray;
+      margin: unset;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+    </tr>
+    <tr>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button> 10</button></td>
+    </tr> 
+
+    <tr>
+      <td><button> 11</button></td>
+      <td><button> 12</button></td>
+      <td><button> 13</button></td>
+      <td><button> 14</button></td>
+      <td><button> 15</button></td>
+    </tr>
+    <tr>
+      <td><button> 16</button></td>
+      <td><button> 17</button></td>
+      <td><button> 18</button></td>
+      <td><button> 19</button></td>
+      <td><button> 20</button></td>
+    </tr>
+    <tr>
+      <td><button> 21</button></td>
+      <td><button> 22</button></td>
+      <td><button> 23</button></td>
+      <td><button> 24</button></td>
+      <td><button> 25</button></td>
+    </tr>
+  </table>
+
+  <script>
+    let buttons = document.querySelectorAll("button");
+    // console.log(buttons[0])
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function (){
+        buttons[i].disabled = true;
+      });
+    }
+  </script>
+</body>
+</html>
