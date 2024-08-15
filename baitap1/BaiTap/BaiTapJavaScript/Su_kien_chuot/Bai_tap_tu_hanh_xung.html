@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" placeholder="Năm sinh bạn nam:"><br>
+    <input type="text" placeholder="Năm sinh bạn nữ:"><br>
+    <button>Kết duyên</button>
+    <p class="result"></p>+
+
+<script>
+
+    let inputData = document.querySelectorAll("input");
+    let result = document.querySelector(".result");
+    let buttonKetDuyen = document.querySelector("button");
+
+    //
+    let chiAge = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão",
+    "Thìn", "Tỵ", "Ngọ", "Mùi"];
+    let canAge = ["Canh", "Tân", "Nhâm", "Qúy", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"]
+
+    buttonKetDuyen.addEventListener("click", function (){
+        let flag = 1;
+        let chiAgeMale = Number(inputData[0].value) % 12;
+        let chiAgeFemale = Number(inputData[1].value) % 12;
+        let canAgeMale = Number(inputData[0].value) % 10;
+        let canAgeFemale = Number(inputData[1].value) % 10;
+
+        result.innerHTML = "Bạn nam tuổi: " + canAge[canAgeMale] + " " + chiAge[chiAgeMale];
+        result.innerHTML += "<br>" + "Bạn nữ tuổi: " + canAge[canAgeFemale] + " " + chiAge[chiAgeFemale];
+
+        if (chiAge[chiAgeMale] === "Dần" && (chiAge[chiAgeFemale] === "Thân" || chiAge[chiAgeFemale] === "Tỵ" || chiAge[chiAgeFemale] === "Hợi")){
+            flag = 0;
+        }
+        else if (chiAge[chiAgeMale] === "Thân" && (chiAge[chiAgeFemale] === "Dần" || chiAge[chiAgeFemale] === "Tỵ" || chiAge[chiAgeFemale] === "Hợi")){
+            flag = 0;
+        }
+        else if (chiAge[chiAgeMale] === "Tỵ" && (chiAge[chiAgeFemale] === "Dần" || chiAge[chiAgeFemale] === "Thân" || chiAge[chiAgeFemale] === "Hợi")){
+            flag = 0;
+        }
+        else if (chiAge[chiAgeMale] === "Hợi" && (chiAge[chiAgeFemale] === "Dần" || chiAge[chiAgeFemale] === "Thân" || chiAge[chiAgeFemale] === "Tỵ")){
+            flag = 0;
+        }
+
+        if(flag){
+            result.innerHTML += "<br>" + "2 bạn hợp nhau";
+        }
+        else{
+            result.innerHTML += "<br>" + "2 bạn không hợp nhau";
+        }
+    });
+</script>
+</body>
+</html>
