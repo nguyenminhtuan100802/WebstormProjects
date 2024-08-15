@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table{
+            border-collapse: collapse;
+        }
+        td{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="table">
+
+    </table>
+
+<script>
+    let column = 10;
+    let row = 10;
+    let table = document.querySelector(".table")
+    for (let i = 0; i <= 10; i++) {
+        let newRow = document.createElement("tr");
+        for (let j = 1; j < column; j++) {
+            let newCell = document.createElement("td");
+            let result = j * i;
+            newCell.innerHTML = j + " * " + i + " = " + result;
+            newCell.style.border = "1px solid black";
+            if (i % 2 === 0 && j % 2 === 1){
+                newCell.style.backgroundColor = "orange"
+            }
+            else if(i % 2 === 1 && j % 2 === 0){
+                newCell.style.backgroundColor = "orange"
+            }
+            else{
+                newCell.style.backgroundColor = "powderblue"
+            }
+            newRow.appendChild(newCell);
+        }
+        table.appendChild(newRow);
+    }
+</script>
+</body>
+</html>
