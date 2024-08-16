@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let arrayNumber = [-3, 5, 1, 3, 2, 10, -5, 78, 98, -99];
+    let text = "", max = arrayNumber[0];
+
+    for (let i = 0; i < arrayNumber.length; i++) {
+        text = text + arrayNumber[i] + " ";
+        if (arrayNumber[i] >= max){
+            max = arrayNumber[i];
+        }
+    }
+    text = text + "<br>" + "Max: " + max;
+
+    document.write(text)
+</script>
+</body>
+</html>
