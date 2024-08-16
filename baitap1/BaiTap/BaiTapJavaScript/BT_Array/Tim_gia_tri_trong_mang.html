@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input class="input_number" type="text" placeholder="Enter number:">
+    <p class="display_result"></p>
+
+    <script>
+        let inputNumber = document.querySelector(".input_number");
+        let displayResult = document.querySelector(".display_result");
+
+        let arrayNumber = [-3, 5, 1, 3, 2, 10];
+        let text = "";
+
+        for (let i = 0; i < arrayNumber.length; i++) {
+            text = text + "<span class = 'display_number' style='margin-right: 10px'>" + arrayNumber[i] + "</span>";
+        }
+        text = text + "<br>"
+        displayResult.innerHTML = text;
+
+        inputNumber.addEventListener("keyup", function (){
+            let numbers = document.querySelectorAll(".display_number");
+            for (let i = 0; i < arrayNumber.length; i++) {
+                if(Number(inputNumber.value) === arrayNumber[i]){
+                    // alert("Tìm đc số");
+                    numbers[i].style.color = "red";
+                    numbers[i].style.border = "1px solid red"
+                }
+                else{
+                    numbers[i].style.color = "black";
+                    numbers[i].style.border = "1px solid white"
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>
