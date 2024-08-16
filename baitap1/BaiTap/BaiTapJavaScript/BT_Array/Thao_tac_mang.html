@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input class="input_car" type="text" placeholder="Enter car name:">
+    <button class="button_add">Add</button>
+    <hr>
+    <p class="display_car"></p>
+
+<script>
+    let text = "";
+    let buttonAdd = document.querySelector(".button_add");
+    let inputCar = document.querySelector(".input_car");
+    let displayCar = document.querySelector(".display_car");
+
+    buttonAdd.addEventListener("click", function (){
+       if(inputCar.value !== ""){
+           text = text + inputCar.value + "<br>";
+           displayCar.innerHTML = text;
+       }
+    });
+</script>
+</body>
+</html>
