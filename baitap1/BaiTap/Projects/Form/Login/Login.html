@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <form>
+        <h3>Log in with</h3>
+
+        <div class="login_option">
+            <div class="option">
+                <img src="../Images/google.png" alt="">
+                <span>Google</span>
+            </div>
+            <div class="option">
+                <img src="../Images/apple.png" alt="">
+                <span>Apple</span>
+            </div>
+        </div>
+
+        <p class="separate">___________ or ___________</p>
+
+        <div class="login_input">
+            <p class="label">Email</p>
+            <input class="input_email" type="email" placeholder="Enter email address">
+            <p class="label_display_error">Please fill out this section</p>
+        </div>
+        <div class="login_input">
+            <p class="label">Password
+                <span class="label_forget_password">
+                    Forget Password?
+                </span>
+            </p>
+            <input class="input_password" type="password" placeholder="Enter password">
+            <p class="label_display_error">Please fill out this section</p>
+        </div>
+
+        <button type="button" class="button_login">Log In</button>
+
+        <p class="label_sign_up">Don't have an account? <span>Sign up</span></p>
+    </form>
+
+    <script src="Login.js"></script>
+</body>
+</html>
