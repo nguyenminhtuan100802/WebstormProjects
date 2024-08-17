@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: powderblue;
+    display: flex;
+}
+.gif_victory{
+    width: 20%;
+}
+.gif_victory img{
+    width: 100%;
+    opacity: 0;
+}
+.board{
+    background-color: white;
+    width: 60%;
+    height: fit-content;
+    padding: 10px;
+    margin: 0px auto;
+}
+.board_info{
+    width: 100%;
+    height: fit-content;
+}
+.board_info .status_player,
+.board_info .reset,
+.board_info .play_with,
+.board_info .level{
+    height: fit-content;
+    float: left;
+    margin: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+.level select{
+    font-size: 30px;
+}
+.board_info .status_player{
+    width: 180px;
+}
+.board_play{
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 10px auto;
+}
+.container_cell{
+    width: 30px;
+    height: 30px;
+}
+.cell{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    /*font-weight: bold;*/
+}
