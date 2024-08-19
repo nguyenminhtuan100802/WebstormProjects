@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="Enter number:">
+<p class="result"></p>
+<script>
+    let inputData = document.querySelector("input");
+    let result = document.querySelector(".result");
+     inputData.addEventListener("keyup", function (){
+         let text = "";
+         // console.log(inputData.value[0]);
+         // console.log(typeof (inputData.value));
+         for (let i = 0; i < inputData.value.length ; i++) {
+             text = text + inputData.value[i];
+             if (Number(inputData.value[i]) % 2 === 0 &&
+                 Number(inputData.value[i + 1]) % 2 === 0){
+                 text = text + "-";
+             }
+         }
+         result.innerHTML = text;
+     });
+</script>
+</body>
+</html>

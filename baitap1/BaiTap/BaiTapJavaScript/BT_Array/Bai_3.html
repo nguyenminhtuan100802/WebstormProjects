@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" placeholder="Enter quote:">
+<p class="result"></p>
+<script>
+    let inputData = document.querySelector("input");
+    let result = document.querySelector(".result");
+    inputData.addEventListener("keyup", function (){
+        let text = "";
+
+        for (let i = 0; i < inputData.value.length; i++) {
+            if (inputData.value[i] === inputData.value[i].toLowerCase()){
+                text = text + inputData.value[i].toUpperCase();
+            }else if (inputData.value[i] === inputData.value[i].toUpperCase()){
+                text = text + inputData.value[i].toLowerCase();
+            }
+        }
+        result.innerHTML = text;
+    });
+</script>
+</body>
+</html>
