@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>
+    <input class="input_feet" type="text" placeholder="Nhập feet:">
+</label>
+<p class="display_meter"></p>
+<label>
+    <input class="input_meter" type="text" placeholder="Nhập meter:">
+</label>
+<p class="display_feet"></p>
+
+<script>
+    let inputFeet = document.querySelector(".input_feet");
+    let inputMeter = document.querySelector(".input_meter");
+    let displayMeter = document.querySelector(".display_meter");
+    let displayFeet = document.querySelector(".display_feet");
+
+    inputFeet.addEventListener("keyup", function () {
+        let meter = Number(inputFeet.value) * 0.305;
+        displayMeter.innerHTML = "Meter: " + meter;
+    });
+    inputMeter.addEventListener("keyup", function () {
+        let feet = Number(inputMeter.value) * 3.279;
+        displayFeet.innerHTML = "Feet: " + feet;
+    });
+</script>
+</body>
+</html>
