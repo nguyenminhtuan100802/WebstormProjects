@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .label_add_product{
+      background-color: powderblue;
+      height: fit-content;
+      padding: 10px;
+    }
+    .input_product_name{
+      height: 20px;
+    }
+    .display_list_product{
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <label class="label_add_product">
+    <input class="input_product_name" type="text" placeholder="New Product">
+    <button class="button_add_product">Add</button>
+  </label>
+
+  <table class="display_list_product">
+  </table>
+
+<script>
+  let inputProductName = document.querySelector(".input_product_name");
+  let buttonAddProduct = document.querySelector(".button_add_product");
+  let displayListProduct = document.querySelector(".display_list_product");
+
+  buttonAddProduct.addEventListener("click", function () {
+    createNewProduct();
+  });
+
+  function createNewProduct(){
+    // khởi tạo hàng, từng hàng có cột name, cột nút edit, cột nút delete
+    let newRow = document.createElement("tr");
+    let newCellName = document.createElement("td");
+    let newCellEdit = document.createElement("td");
+    let newButtonEdit = document.createElement("button");
+    let newCellDelete = document.createElement("td");
+    let newButtonDelete = document.createElement("button");
+
+    newCellName.innerHTML = inputProductName.value;
+    newCellName.addEventListener("focusout", function () {
+      newCellName.contentEditable = "false";
+    });
+
+    newButtonEdit.innerHTML = "Edit";
+    newButtonEdit.addEventListener("click", function () {
+      newCellName.contentEditable = "true";
+    });
+    newCellEdit.appendChild(newButtonEdit);
+
+    newButtonDelete.innerHTML = "Delele";
+    newButtonDelete.addEventListener("click", function () {
+      displayListProduct.removeChild(newRow);
+    });
+    newCellDelete.appendChild(newButtonDelete);
+
+    newRow.appendChild(newCellName);
+    newRow.appendChild(newCellEdit);
+    newRow.appendChild(newCellDelete);
+
+    displayListProduct.appendChild(newRow);
+  }
+</script>
+</body>
+</html>
