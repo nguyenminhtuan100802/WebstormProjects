@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // let arr = [3, 5, 1, 8, -3, 7, 8];
+    // let arr = [7, 12, 6, 9, 20, 56, 89];
+    // let arr = [];
+    let arr = [0, 0, 0, 0, 0, 0];
+    let min;
+
+    if (arr.length !== 0){
+        min = arr[0];
+    }
+    for (let i = 0; i <= arr.length; i++) {
+        if (arr.length === 0){
+            console.log("Mảng rỗng");
+            break;
+        }
+        if (arr[i] <= min){
+            min = arr[i];
+        }
+    }
+    console.log("Min: " + min);
+</script>
+</body>
+</html>
