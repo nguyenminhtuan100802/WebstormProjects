@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>
+    <input class="input_data" type="text" placeholder="Nhập độ F:">
+</label>
+<p class="display_result"></p>
+
+<script>
+    let inputData = document.querySelector(".input_data");
+    let displayResult = document.querySelector(".display_result");
+
+    inputData.addEventListener("keyup", function () {
+        let doC = (Number(inputData.value) -32) / 1.8;
+        displayResult.innerHTML = "Độ C: " + doC;
+    })
+</script>
+</body>
+</html>
