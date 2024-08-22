@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function MyDate(inputDay, inputMonth, inputYear) {
+        let day = inputDay;
+        let month = inputMonth;
+        let year = inputYear;
+        this.setDay = function (inputDay){
+            day = inputDay;
+        }
+        this.setMonth = function (inputMonth){
+            month = inputMonth;
+        }
+        this.setYear = function (inputYear){
+            year = inputYear;
+        }
+        this.getDay = function (){
+            return day;
+        }
+        this.getMonth = function (){
+            return month;
+        }
+        this.getYear = function (){
+            return year;
+        }
+        this.showTime = function () {
+            return day + "/" + month + "/" + year;
+        }
+    }
+
+    let date = new MyDate(2, 9, 1975);
+    console.log(date.showTime());
+    date.setDay(10);
+    date.setMonth(8);
+    date.setYear(2002);
+    console.log(date.showTime());
+
+</script>
+</body>
+</html>
