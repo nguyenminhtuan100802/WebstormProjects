@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" style="border:1px solid grey">
+
+</canvas>
+<script>
+    function Rectangle(inputWidth, inputHeight) {
+        let width = inputWidth;
+        let height = inputHeight;
+        this.calculateChuVi = function () {
+            return (width + height) * 2;
+        }
+        this.calculateDienTich = function () {
+            return width * height;
+        }
+        this.drawRectangle = function () {
+            const c = document.getElementById("myCanvas");
+            const ctx = c.getContext("2d");
+            ctx.beginPath();
+            ctx.strokeStyle = "red";
+            ctx.rect(0, 0, width, height);
+            ctx.stroke();
+        }
+        
+    }
+
+    let rectangle = new Rectangle(50, 20);
+    console.log(rectangle.calculateChuVi());
+    console.log(rectangle.calculateDienTich());
+    rectangle.drawRectangle();
+</script>
+</body>
+</html>
