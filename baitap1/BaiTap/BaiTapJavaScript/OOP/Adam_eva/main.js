@@ -1,0 +1,15 @@
+let apple = new Apple(10);
+console.log("Khối lượng táo: " + apple.getWeight());
+let human = new Human("Tuấn", "male", 100, apple);
+console.log("Khối lượng người: " + human.getWeight());
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
+human.eatApple();
