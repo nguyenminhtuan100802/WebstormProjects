@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script>
+    let number = Number(prompt("Nhập vào số cần tìm"));
+    let arr = [1, 2, 4, 6, 7, 10, 1];
+    let dem = 0;
+    document.writeln(arr + "<br>");
+    for (let i = 0; i < arr.length; i++) {
+        if (number === arr[i]){
+            dem++;
+        }
+    }
+    document.writeln(number + " lặp " + dem);
+
+</script>
+</body>
+</html>
