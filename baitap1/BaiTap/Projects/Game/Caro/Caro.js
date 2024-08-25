@@ -1,95 +1,97 @@
 let boardPlay = document.querySelector(".board_play");
 let statusPlayer = document.querySelector(".status_player");
 let levelSelect = document.querySelector(".level_select");
-
-let rows = 20;
-let columns = 20;
-let edgeLeft = [];
-let edgeRight = [];
-let edgeTop = [];
-let edgeBottom = [];
+let rows;
+let columns;
+let edgeLeft;
+let edgeRight;
+let edgeTop
+let edgeBottom;
 let count = 0;
 let countFontBold;
 let flagWin = 0;
+let textDrawBoard;
+let cells;
 
-for (let i = 0; i < rows; i++) {
-    edgeLeft.push(i * rows);
-    edgeTop.push(i);
-    edgeRight.push(i * rows + (rows - 1));
-    edgeBottom.push(rows * (rows - 1) + i);
-}
-console.log("Left: " + edgeLeft);
-console.log("Top: " + edgeTop);
-console.log("Right: " + edgeRight);
-console.log("Bottom: " + edgeBottom);
-
-// vẽ bàn cờ caro
-drawBoard();
-
-// lụm ra danh sách các nút trong bàn cờ
-let cells = boardPlay.querySelectorAll(".cell");
-console.log(cells);
-
-// xử lý sự kiện người dùng đánh cờ
-for (let i = 0; i < rows * columns; i++) {
-    cells[i].addEventListener("click", function (){
-        countFontBold = 0;
-
-        // chưa có người thắng thì tiếp tục chơi
-        if (flagWin === 0){
-            // người chơi đánh O
-            if (count % 2 === 1 && cells[i].innerText === ""){
-                cells[i].innerText = "O";
-                cells[i].style.color = "red";
-                statusPlayer.innerHTML = "Đang lượt: X";
-                count++;
-
-                // kểm tra win theo hàng dọc
-                checkWinVertical(i, "O");
-                // kểm tra win theo hàng ngang
-                checkWinHorizontal(i, "O");
-                // kểm tra win theo cạnh huyền
-                checkWinCanhHuyen(i, "O");
-                // kểm tra win theo cạnh sắc
-                checkWinCanhSac(i, "O");
-
-            }
-            // người chơi đánh X
-            else if (count % 2 === 0 && cells[i].innerText === ""){
-                cells[i].innerText = "X";
-                cells[i].style.color = "blue";
-                statusPlayer.innerHTML = "Đang lượt: O";
-                count++;
-
-                // kểm tra win theo hàng dọc
-                checkWinVertical(i, "X");
-                // kểm tra win theo hàng ngang
-                checkWinHorizontal(i, "X");
-                // kểm tra win theo cạnh huyền
-                checkWinCanhHuyen(i, "X");
-                // kểm tra win theo cạnh sắc
-                checkWinCanhSac(i, "X");
-
-            }
-            // console.log("count: " + count)
-        }
-    });
-}
-
-function drawBoard(){
+levelSelect.addEventListener("change", function (){
+    createArrayEdge();
+    // vẽ bàn cờ caro
+    drawBoard();
+    startGame();
+});
+function createArrayEdge() {
+    edgeLeft = [];
+    edgeRight = [];
+    edgeTop = [];
+    edgeBottom = [];
+    rows = columns = Number(levelSelect.value);
     for (let i = 0; i < rows; i++) {
-        let newRow = document.createElement("tr");
+        edgeLeft.push(i * rows);
+        edgeTop.push(i);
+        edgeRight.push(i * rows + (rows - 1));
+        edgeBottom.push(rows * (rows - 1) + i);
+    }
+    console.log("Left: " + edgeLeft);
+    console.log("Top: " + edgeTop);
+    console.log("Right: " + edgeRight);
+    console.log("Bottom: " + edgeBottom);
+}
+function drawBoard(){
+    textDrawBoard = "";
+    for (let i = 0; i < rows; i++) {
+        // let newRow = document.createElement("tr");
+        textDrawBoard += '<tr>';
         for (let j = 0; j < columns; j++) {
-            let newColumn = document.createElement("td");
-            let newButton = document.createElement("p");
-            newButton.className = "cell";
-            // in số tượng trưng các dòng các cột để debug
-            // newButton.innerText = i + "" + j;
-            newColumn.appendChild(newButton);
-            newColumn.className = "container_cell";
-            newRow.appendChild(newColumn);
+            textDrawBoard += '<td class="container_cell"><p class="cell"></p></td>'
         }
-        boardPlay.appendChild(newRow);
+        textDrawBoard += '</tr>';
+        boardPlay.innerHTML = textDrawBoard;
+    }
+}
+function startGame() {
+    // lụm ra danh sách các nút trong bàn cờ
+    cells = boardPlay.querySelectorAll(".cell");
+    console.log(cells);
+
+    // xử lý sự kiện người dùng đánh cờ
+    for (let i = 0; i < rows * columns; i++) {
+        cells[i].addEventListener("click", function (){
+            countFontBold = 0;
+            // chưa có người thắng thì tiếp tục chơi
+            if (flagWin === 0){
+                // người chơi đánh O
+                if (count % 2 === 1 && cells[i].innerText === ""){
+                    cells[i].innerText = "O";
+                    cells[i].style.color = "red";
+                    statusPlayer.innerHTML = "Đang lượt: X";
+                    count++;
+                    // kểm tra win theo hàng dọc
+                    checkWinVertical(i, "O");
+                    // kểm tra win theo hàng ngang
+                    checkWinHorizontal(i, "O");
+                    // kểm tra win theo cạnh huyền
+                    checkWinCanhHuyen(i, "O");
+                    // kểm tra win theo cạnh sắc
+                    checkWinCanhSac(i, "O");
+                }
+                // người chơi đánh X
+                else if (count % 2 === 0 && cells[i].innerText === ""){
+                    cells[i].innerText = "X";
+                    cells[i].style.color = "blue";
+                    statusPlayer.innerHTML = "Đang lượt: O";
+                    count++;
+                    // kểm tra win theo hàng dọc
+                    checkWinVertical(i, "X");
+                    // kểm tra win theo hàng ngang
+                    checkWinHorizontal(i, "X");
+                    // kểm tra win theo cạnh huyền
+                    checkWinCanhHuyen(i, "X");
+                    // kểm tra win theo cạnh sắc
+                    checkWinCanhSac(i, "X");
+                }
+                // console.log("count: " + count)
+            }
+        });
     }
 }
 function checkWinVertical(indexCell, syntaxPlayer){
@@ -278,6 +280,7 @@ function celebrateWinnerAndBoldFont(indexCell){
     cells[indexCell].style.fontWeight = "bold";
     cells[indexCell].style.fontSize = "30px";
 }
+
 
 
 

@@ -6,6 +6,8 @@
 }
 body{
     background-color: powderblue;
+}
+.container{
     display: flex;
 }
 .gif_victory{
@@ -17,10 +19,13 @@ body{
 }
 .board{
     background-color: white;
-    width: 60%;
+    width: fit-content;
     height: fit-content;
     padding: 10px;
     margin: 0px auto;
+}
+.board h3{
+    text-align: center;
 }
 .board_info{
     width: 100%;
@@ -29,18 +34,23 @@ body{
 .board_info .status_player,
 .board_info .reset,
 .board_info .play_with,
-.board_info .level{
+.board_info .level,
+.option{
     height: fit-content;
     float: left;
     margin: 10px;
     font-size: 30px;
     text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.level select{
+.level select, .option{
     font-size: 30px;
 }
 .board_info .status_player{
-    width: 180px;
+    text-align: left;
+    width: 200px;
 }
 .board_play{
     border-collapse: collapse;
@@ -60,4 +70,8 @@ body{
     text-align: center;
     cursor: pointer;
     /*font-weight: bold;*/
+}
+.level_select:hover{
+    background-color: yellowgreen;
+    border-radius: 10px;
 }
