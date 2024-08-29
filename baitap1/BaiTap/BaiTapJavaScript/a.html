@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function swap(arr) {
+        //your code here
+        let arrnew = [];
+        arrnew.push(arr[arr.length - 1]);
+        for(let i = 1; i < arr.length - 1; i++){
+            arrnew.push(arr[i]);
+        }
+        arrnew.push(arr[0]);
+        return arrnew;
+    }
+
+    console.log(swap([1,3,5,7]));
+</script>
+</body>
+</html>
