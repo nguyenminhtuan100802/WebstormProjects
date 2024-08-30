@@ -1,8 +1,13 @@
 let score = document.querySelector(".score");
 let grid = document.querySelector(".grid");
 let html = "";
-let count = 0;
-let delayForGhost = 100;
+let delayForMovement = 50;
+let pacman = new Pacman(5);
+let ghostRed = new Ghost(10);
+let ghostOrange = new Ghost(11);
+let ghostPink = new Ghost(12);
+let ghostBlue = new Ghost(13);
+
 /*
 * 0: pacman dot
 * 1: wall
@@ -16,11 +21,11 @@ const objectInGamePacman = {
     WALL: 1,
     POWER: 3,
     ROAD: 4,
-    PACMAN_PLAYER: 5,
-    GHOST_RED: 10,
-    GHOST_ORANGE: 11,
-    GHOST_PINK: 12,
-    GHOST_BLUE: 13
+    PACMAN_PLAYER: pacman,
+    GHOST_RED: ghostRed,
+    GHOST_ORANGE: ghostOrange,
+    GHOST_PINK: ghostPink,
+    GHOST_BLUE: ghostBlue
 };
 const layout = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -53,26 +58,29 @@ const layout = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ]
 
-
-
 drawMap();
-ghostAutoMove(objectInGamePacman.GHOST_RED, delayForGhost);
-ghostAutoMove(objectInGamePacman.GHOST_ORANGE, delayForGhost);
-ghostAutoMove(objectInGamePacman.GHOST_PINK, delayForGhost);
-ghostAutoMove(objectInGamePacman.GHOST_BLUE, delayForGhost);
+ghostAutoMove(objectInGamePacman.GHOST_RED, delayForMovement);
+ghostAutoMove(objectInGamePacman.GHOST_ORANGE, delayForMovement);
+ghostAutoMove(objectInGamePacman.GHOST_PINK, delayForMovement);
+ghostAutoMove(objectInGamePacman.GHOST_BLUE, delayForMovement);
+
 window.addEventListener("keyup", function (e) {
-    console.log(e.key);
+    // console.log(e.key);
     if (e.key === "d") {
-        moveRight();
+        objectInGamePacman.PACMAN_PLAYER.moveRight(layout, objectInGamePacman);
+        drawMap();
     }
     else if (e.key === "w") {
-        moveUp();
+        objectInGamePacman.PACMAN_PLAYER.moveUp(layout, objectInGamePacman);
+        drawMap();
     }
     else if (e.key === "a") {
-        moveLeft();
+        objectInGamePacman.PACMAN_PLAYER.moveLeft(layout, objectInGamePacman);
+        drawMap();
     }
     else if (e.key === "s") {
-        moveDown();
+        objectInGamePacman.PACMAN_PLAYER.moveDown(layout, objectInGamePacman);
+        drawMap();
     }
 });
 
@@ -86,16 +94,16 @@ function drawMap() {
         else if (layout[i] === objectInGamePacman.WALL){
             html += "<div class='wall'></div>";
         }
-        else if (layout[i] === objectInGamePacman.GHOST_RED){
+        else if (layout[i] === ghostRed.ID){
             html += "<div class='ghost_red'></div>";
         }
-        else if (layout[i] === objectInGamePacman.GHOST_ORANGE){
+        else if (layout[i] === ghostOrange.ID){
             html += "<div class='ghost_orange'></div>";
         }
-        else if (layout[i] === objectInGamePacman.GHOST_PINK){
+        else if (layout[i] === ghostPink.ID){
             html += "<div class='ghost_pink'></div>";
         }
-        else if (layout[i] === objectInGamePacman.GHOST_BLUE){
+        else if (layout[i] === ghostBlue.ID){
             html += "<div class='ghost_blue'></div>";
         }
         else if (layout[i] === objectInGamePacman.POWER){
@@ -104,141 +112,16 @@ function drawMap() {
         else if (layout[i] === objectInGamePacman.ROAD){
             html += "<div class='road'></div>";
         }
-        else if (layout[i] === objectInGamePacman.PACMAN_PLAYER){
+        else if (layout[i] === pacman.ID){
             html += "<div class='pacman'></div>";
         }
     }
     grid.innerHTML = html;
 }
 
-
-
-function moveRight() {
-    let pacmanCurrentIndex = layout.indexOf(objectInGamePacman.PACMAN_PLAYER);
-    console.log(pacmanCurrentIndex);
-    if (layout[pacmanCurrentIndex + 1] !== objectInGamePacman.WALL){
-        if (layout[pacmanCurrentIndex + 1] === objectInGamePacman.GHOST_RED ||
-            layout[pacmanCurrentIndex + 1] === objectInGamePacman.GHOST_ORANGE ||
-            layout[pacmanCurrentIndex + 1] === objectInGamePacman.GHOST_PINK ||
-            layout[pacmanCurrentIndex + 1] === objectInGamePacman.GHOST_BLUE){
-            alert("bi bat");
-        }
-        let temp = layout[pacmanCurrentIndex];
-        layout[pacmanCurrentIndex] = objectInGamePacman.ROAD;
-        layout[pacmanCurrentIndex + 1] = temp;
-        drawMap();
-    }
-}
-function moveLeft() {
-    let pacmanCurrentIndex = layout.indexOf(objectInGamePacman.PACMAN_PLAYER);
-    console.log(pacmanCurrentIndex);
-    if (layout[pacmanCurrentIndex - 1] !== objectInGamePacman.WALL){
-        if (layout[pacmanCurrentIndex - 1] === objectInGamePacman.GHOST_RED ||
-            layout[pacmanCurrentIndex - 1] === objectInGamePacman.GHOST_ORANGE ||
-            layout[pacmanCurrentIndex - 1] === objectInGamePacman.GHOST_PINK ||
-            layout[pacmanCurrentIndex - 1] === objectInGamePacman.GHOST_BLUE){
-            alert("bi bat");
-        }
-        let temp = layout[pacmanCurrentIndex];
-        layout[pacmanCurrentIndex] = objectInGamePacman.ROAD;
-        layout[pacmanCurrentIndex - 1] = temp;
-        drawMap();
-    }
-}
-function moveUp() {
-    let pacmanCurrentIndex = layout.indexOf(objectInGamePacman.PACMAN_PLAYER);
-    console.log(pacmanCurrentIndex);
-    if (layout[pacmanCurrentIndex - 28] !== objectInGamePacman.WALL){
-        if (layout[pacmanCurrentIndex - 28] === objectInGamePacman.GHOST_RED ||
-            layout[pacmanCurrentIndex - 28] === objectInGamePacman.GHOST_ORANGE ||
-            layout[pacmanCurrentIndex - 28] === objectInGamePacman.GHOST_PINK ||
-            layout[pacmanCurrentIndex - 28] === objectInGamePacman.GHOST_BLUE){
-            alert("bi bat");
-        }
-        let temp = layout[pacmanCurrentIndex];
-        layout[pacmanCurrentIndex] = objectInGamePacman.ROAD;
-        layout[pacmanCurrentIndex - 28] = temp;
-        drawMap();
-    }
-}
-function moveDown() {
-    let pacmanCurrentIndex = layout.indexOf(objectInGamePacman.PACMAN_PLAYER);
-    console.log(pacmanCurrentIndex);
-    if (layout[pacmanCurrentIndex + 28] !== objectInGamePacman.WALL){
-        if (layout[pacmanCurrentIndex + 28] === objectInGamePacman.GHOST_RED ||
-            layout[pacmanCurrentIndex + 28] === objectInGamePacman.GHOST_ORANGE ||
-            layout[pacmanCurrentIndex + 28] === objectInGamePacman.GHOST_PINK ||
-            layout[pacmanCurrentIndex + 28] === objectInGamePacman.GHOST_BLUE){
-            alert("bi bat");
-        }
-        let temp = layout[pacmanCurrentIndex];
-        layout[pacmanCurrentIndex] = objectInGamePacman.ROAD;
-        layout[pacmanCurrentIndex + 28] = temp;
-        drawMap();
-    }
-}
-function ghostMoveRight(ghost){
-    let ghostCurrentIndex = layout.indexOf(ghost);
-    if (layout[ghostCurrentIndex + 1] !== objectInGamePacman.WALL){
-        if (layout[ghostCurrentIndex + 1] === objectInGamePacman.PACMAN_PLAYER){
-            alert("bi bat");
-        }
-        let temp = layout[ghostCurrentIndex];
-        layout[ghostCurrentIndex] = layout[ghostCurrentIndex + 1];
-        layout[ghostCurrentIndex + 1] = temp;
-        drawMap();
-    }
-}
-function ghostMoveLeft(ghost){
-    let ghostCurrentIndex = layout.indexOf(ghost);
-    if (layout[ghostCurrentIndex - 1] !== objectInGamePacman.WALL){
-        if (layout[ghostCurrentIndex - 1] === objectInGamePacman.PACMAN_PLAYER){
-            alert("bi bat");
-        }
-        let temp = layout[ghostCurrentIndex];
-        layout[ghostCurrentIndex] = layout[ghostCurrentIndex - 1];
-        layout[ghostCurrentIndex - 1] = temp;
-        drawMap();
-    }
-}
-function ghostMoveUp(ghost){
-    let ghostCurrentIndex = layout.indexOf(ghost);
-    if (layout[ghostCurrentIndex - 28] !== objectInGamePacman.WALL){
-        if (layout[ghostCurrentIndex - 28] === objectInGamePacman.PACMAN_PLAYER){
-            alert("bi bat");
-        }
-        let temp = layout[ghostCurrentIndex];
-        layout[ghostCurrentIndex] = layout[ghostCurrentIndex - 28];
-        layout[ghostCurrentIndex - 28] = temp;
-        drawMap();
-    }
-}
-function ghostMoveDown(ghost){
-    let ghostCurrentIndex = layout.indexOf(ghost);
-    if (layout[ghostCurrentIndex + 28] !== objectInGamePacman.WALL){
-        if (layout[ghostCurrentIndex + 28] === objectInGamePacman.PACMAN_PLAYER){
-            alert("bi bat");
-        }
-        let temp = layout[ghostCurrentIndex];
-        layout[ghostCurrentIndex] = layout[ghostCurrentIndex + 28];
-        layout[ghostCurrentIndex + 28] = temp;
-        drawMap();
-    }
-}
 function ghostAutoMove(ghost, timerDelayForMovement){
     setInterval(function (){
-        let ghostDecision = Math.floor(Math.random() * 4);
-        if (ghostDecision === 0){
-            ghostMoveRight(ghost);
-        }
-        else if (ghostDecision === 1){
-            ghostMoveLeft(ghost);
-        }
-        else if (ghostDecision === 2){
-            ghostMoveUp(ghost);
-        }
-        else if (ghostDecision === 3){
-            ghostMoveDown(ghost);
-        }
+        ghost.autoMove(layout, objectInGamePacman);
+        drawMap();
     }, timerDelayForMovement);
 }

@@ -1,6 +1,7 @@
 let boardPlay = document.querySelector(".board_play");
 let statusPlayer = document.querySelector(".status_player");
 let levelSelect = document.querySelector(".level_select");
+let buttonReset = document.querySelector(".reset");
 let rows;
 let columns;
 let edgeLeft;
@@ -12,6 +13,10 @@ let countFontBold;
 let flagWin = 0;
 let textDrawBoard;
 let cells;
+
+buttonReset.addEventListener("click", () => {
+    drawBoard();
+});
 
 levelSelect.addEventListener("change", function (){
     createArrayEdge();
