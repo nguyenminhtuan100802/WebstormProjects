@@ -4,30 +4,43 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
+.game_info{
+    text-align: center;
+    font-size: 30px;
+}
+.game_info .blink_plus_score_1,
+.game_info .blink_plus_score_20{
+    opacity: 0;
+}
+.game_info .blink_plus_score_1{
+    color: green;
+}
+.game_info .blink_plus_score_20{
+    color: red;
+}
 .grid{
-    width: 710px;
-    height: 705px;
+    width: fit-content;
+    height: fit-content;
     border: solid black;
     display: flex;
     flex-wrap: wrap;
     margin: 0px auto;
+    border-collapse: collapse;
 }
-.grid div{
+td div{
     width: 25px;
     height: 25px;
-    /*border: solid black;*/
 }
 .pac_dot{
     background-color: yellow;
-    border: 10px solid black;
+    border: 11px solid black;
 }
 .wall{
     background-color: blue;
 }
 .power-pellet{
-    border: 5px solid black;
+    border: 6px solid black;
     background-color: yellow;
-    /*border-radius: 20px;*/
 }
 .road{
     background-color: black;
@@ -67,7 +80,27 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-.ghost{
-    background-color: aquamarine;
+.display_lose{
+    background-color: black;
+    color: white;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 10px;
 }
+.display_lose p{
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.display_lose .button{
+    font-size: 30px;
+    padding: 10px;
+    font-weight: bold;
+}
+.display_lose .button:hover{
+    
+}
+
+

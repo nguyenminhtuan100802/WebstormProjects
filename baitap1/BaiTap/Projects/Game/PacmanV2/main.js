@@ -1,12 +1,19 @@
 let score = document.querySelector(".score");
 let grid = document.querySelector(".grid");
 let html = "";
-let delayForMovement = 50;
+let delayForMovement = 150;
 let pacman = new Pacman(5);
 let ghostRed = new Ghost(10);
 let ghostOrange = new Ghost(11);
 let ghostPink = new Ghost(12);
 let ghostBlue = new Ghost(13);
+let count = 0;
+let audioStartGame = document.querySelector(".myAudioStartGame");
+setInterval(function () {
+    console.log("test");
+    audioStartGame.play();
+}, 1000);
+
 
 /*
 * 0: pacman dot
@@ -66,21 +73,21 @@ ghostAutoMove(objectInGamePacman.GHOST_BLUE, delayForMovement);
 
 window.addEventListener("keyup", function (e) {
     // console.log(e.key);
-    if (e.key === "d") {
-        objectInGamePacman.PACMAN_PLAYER.moveRight(layout, objectInGamePacman);
+    if (objectInGamePacman.PACMAN_PLAYER.flagLose === false){
+        if (e.key === "d") {
+            objectInGamePacman.PACMAN_PLAYER.moveRight(layout, objectInGamePacman);
+        }
+        else if (e.key === "w") {
+            objectInGamePacman.PACMAN_PLAYER.moveUp(layout, objectInGamePacman);
+        }
+        else if (e.key === "a") {
+            objectInGamePacman.PACMAN_PLAYER.moveLeft(layout, objectInGamePacman);
+        }
+        else if (e.key === "s") {
+            objectInGamePacman.PACMAN_PLAYER.moveDown(layout, objectInGamePacman);
+        }
         drawMap();
-    }
-    else if (e.key === "w") {
-        objectInGamePacman.PACMAN_PLAYER.moveUp(layout, objectInGamePacman);
-        drawMap();
-    }
-    else if (e.key === "a") {
-        objectInGamePacman.PACMAN_PLAYER.moveLeft(layout, objectInGamePacman);
-        drawMap();
-    }
-    else if (e.key === "s") {
-        objectInGamePacman.PACMAN_PLAYER.moveDown(layout, objectInGamePacman);
-        drawMap();
+        score.innerHTML = objectInGamePacman.PACMAN_PLAYER.score;
     }
 });
 
@@ -88,39 +95,52 @@ window.addEventListener("keyup", function (e) {
 function drawMap() {
     html = "";
     for (let i = 0; i < layout.length; i++) {
+        if (count === 0){
+            html += "<tr>"
+        }
+        count++;
         if (layout[i] === objectInGamePacman.DOT){
-            html += "<div class='pac_dot'></div>";
+            html += "<td><div class='pac_dot'></div></td>";
         }
         else if (layout[i] === objectInGamePacman.WALL){
-            html += "<div class='wall'></div>";
+            html += "<td><div class='wall'></div></td>";
         }
         else if (layout[i] === ghostRed.ID){
-            html += "<div class='ghost_red'></div>";
+            html += "<td><div class='ghost_red'></div></td>";
         }
         else if (layout[i] === ghostOrange.ID){
-            html += "<div class='ghost_orange'></div>";
+            html += "<td><div class='ghost_orange'></div></td>";
         }
         else if (layout[i] === ghostPink.ID){
-            html += "<div class='ghost_pink'></div>";
+            html += "<td><div class='ghost_pink'></div></td>";
         }
         else if (layout[i] === ghostBlue.ID){
-            html += "<div class='ghost_blue'></div>";
+            html += "<td><div class='ghost_blue'></div></td>";
         }
         else if (layout[i] === objectInGamePacman.POWER){
-            html += "<div class='power-pellet'></div>";
+            html += "<td><div class='power-pellet'></div></td>";
         }
         else if (layout[i] === objectInGamePacman.ROAD){
-            html += "<div class='road'></div>";
+            html += "<td><div class='road'></div></td>";
         }
         else if (layout[i] === pacman.ID){
-            html += "<div class='pacman'></div>";
+            html += "<td><div class='pacman'></div></td>";
+        }
+        if (count === 28){
+            count = 0;
+            html += "</tr>"
         }
     }
+    // console.log(html)
     grid.innerHTML = html;
 }
 
 function ghostAutoMove(ghost, timerDelayForMovement){
-    setInterval(function (){
+    let x = setInterval(function (){
+        // console.log("lose: " + objectInGamePacman.PACMAN_PLAYER.flagLose);
+        if (objectInGamePacman.PACMAN_PLAYER.flagLose === true){
+            clearInterval(x);
+        }
         ghost.autoMove(layout, objectInGamePacman);
         drawMap();
     }, timerDelayForMovement);

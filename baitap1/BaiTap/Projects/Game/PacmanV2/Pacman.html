@@ -2,15 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pacman</title>
     <link rel="stylesheet" href="Pacman.css"></head>
 <body>
-    <div class="grid">
-        <h3>score <span class="score"></span></h3>
-        <h3>level <span class="level"></span></h3>
+    <audio class="myAudioStartGame">
+        <source src="../PacmanV2/Music/GameStart.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio class="myAudioPacmanEating">
+        <source src="../PacmanV2/Music/Eating.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio class="myAudioPacmanEatingPower">
+        <source src="../PacmanV2/Music/EatingPower.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio class="myAudioBommanChui">
+        <source src="../PacmanV2/Music/BommanChui.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio class="myAudioBommanGay">
+        <source src="../PacmanV2/Music/BommanGay.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <h3 class="game_info">
+        Level: <span class="Level">1</span>
+        Score: <span class="score">0</span>
+        <span class="blink_plus_score_1">+1</span>
+        <span class="blink_plus_score_20">+20</span>
+    </h3>
+    <table class="grid">
+
+    </table>
+
+    <div class="display_lose">
+        <p>LOSE :"((</p>
+        <button class="button">Play again</button>
+        <button class="button">Next level</button>
     </div>
 
 
+    <script>
+
+
+    </script>
     <script src="Pacman.js"></script>
     <script src="Ghost.js"></script>
     <script src="main.js"></script>

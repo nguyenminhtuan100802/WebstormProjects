@@ -1,6 +1,7 @@
 class Ghost {
     constructor(ID) {
         this._ID = ID;
+        this._bommanChuiSound =  document.querySelector(".myAudioBommanChui");
     }
 
     get ID() {
@@ -19,7 +20,8 @@ class Ghost {
             mapLayout[ghostCurrentIndex + 1] !== objectArray.GHOST_PINK.ID &&
             mapLayout[ghostCurrentIndex + 1] !== objectArray.GHOST_BLUE.ID){
             if (mapLayout[ghostCurrentIndex + 1] === objectArray.PACMAN_PLAYER.ID){
-                alert("bi bat");
+                this.playBommanChuiSound();
+                objectArray.PACMAN_PLAYER.flagLose = true;
             }
             let temp = mapLayout[ghostCurrentIndex];
             mapLayout[ghostCurrentIndex] = mapLayout[ghostCurrentIndex + 1];
@@ -35,7 +37,8 @@ class Ghost {
             mapLayout[ghostCurrentIndex - 1] !== objectArray.GHOST_PINK.ID &&
             mapLayout[ghostCurrentIndex - 1] !== objectArray.GHOST_BLUE.ID){
             if (mapLayout[ghostCurrentIndex - 1] === objectArray.PACMAN_PLAYER.ID){
-                alert("bi bat");
+                this.playBommanChuiSound();
+                objectArray.PACMAN_PLAYER.flagLose = true;
             }
             let temp = mapLayout[ghostCurrentIndex];
             mapLayout[ghostCurrentIndex] = mapLayout[ghostCurrentIndex - 1];
@@ -51,7 +54,8 @@ class Ghost {
             mapLayout[ghostCurrentIndex - 28] !== objectArray.GHOST_PINK.ID &&
             mapLayout[ghostCurrentIndex - 28] !== objectArray.GHOST_BLUE.ID){
             if (mapLayout[ghostCurrentIndex - 28] === objectArray.PACMAN_PLAYER.ID){
-                alert("bi bat");
+                this.playBommanChuiSound();
+                objectArray.PACMAN_PLAYER.flagLose = true;
             }
             let temp = mapLayout[ghostCurrentIndex];
             mapLayout[ghostCurrentIndex] = mapLayout[ghostCurrentIndex - 28];
@@ -67,7 +71,9 @@ class Ghost {
             mapLayout[ghostCurrentIndex + 28] !== objectArray.GHOST_PINK.ID &&
             mapLayout[ghostCurrentIndex + 28] !== objectArray.GHOST_BLUE.ID){
             if (mapLayout[ghostCurrentIndex + 28] === objectArray.PACMAN_PLAYER.ID){
-                alert("bi bat");
+                this.playBommanChuiSound();
+                objectArray.PACMAN_PLAYER.flagLose = true;
+
             }
             let temp = mapLayout[ghostCurrentIndex];
             mapLayout[ghostCurrentIndex] = mapLayout[ghostCurrentIndex + 28];
@@ -88,5 +94,8 @@ class Ghost {
         else if (ghostDecision === 3){
             this.moveDown(mapLayout, objectArray);
         }
+    }
+    playBommanChuiSound(){
+        this._bommanChuiSound.play();
     }
 }
