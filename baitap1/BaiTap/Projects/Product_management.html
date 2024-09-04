@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .label_add_product{
+      background-color: powderblue;
+      height: fit-content;
+      padding: 10px;
+    }
+    .input_product_info{
+      height: 20px;
+      width: 15%;
+    }
+    .display_list_product{
+      margin-top: 20px;
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+
+    td, th{
+      border: 1px solid black;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <label class="label_add_product">
+    <input class="input_product_info input_product_name" type="text" placeholder="Tên sản phẩm">
+    <input class="input_product_info input_product_price" type="text" placeholder="Giá">
+    <input class="input_product_info input_product_quantity" type="text" placeholder="Số lượng">
+    <input class="input_product_info input_product_status" type="text" placeholder="Trạng thái">
+    <button class="button_add_product">Thêm sản phẩm</button>
+    <button class="button_save_change_product">Lưu thay đổi</button>
+  </label>
+
+  <table class="display_list_product">
+  </table>
+
+<script>
+  let inputProductName = document.querySelector(".input_product_name");
+  let inputProductPrice =document.querySelector(".input_product_price");
+  let inputProductQuantity =document.querySelector(".input_product_quantity");
+  let inputProductStatus =document.querySelector(".input_product_status");
+  let buttonAddProduct = document.querySelector(".button_add_product");
+  let displayListProduct = document.querySelector(".display_list_product");
+  let buttonSaveChangeProduct = document.querySelector(".button_save_change_product");
+  let indexForSaveChange;
+  let productName = [];
+  let newRow;
+  let newHeadingName;
+  let newHeadingPrice;
+  let newHeadingQuantity;
+  let newHeadingStatus;
+  let newCellName;
+  let newCellPrice;
+  let newCellQuantity;
+  let newCellStatus;
+  let newCellEdit;
+  let newButtonEdit;
+  let newCellDelete;
+  let newButtonDelete;
+  createTableHeading();
+
+
+  buttonAddProduct.addEventListener("click", function () {
+    if (inputProductName.value !== "" && inputProductPrice.value !== "" && inputProductQuantity.value !== "" && inputProductStatus.value !== ""){
+      clearDisplay();
+      productName.push([inputProductName.value, inputProductPrice.value, inputProductQuantity.value, inputProductStatus.value]);
+      displayProducts();
+    }
+  });
+  buttonSaveChangeProduct.addEventListener("click", function () {
+    if (inputProductName.value !== "" && inputProductPrice.value !== "" && inputProductQuantity.value !== "" && inputProductStatus.value !== "") {
+      productName[indexForSaveChange][0] = inputProductName.value;
+      productName[indexForSaveChange][1] = inputProductPrice.value;
+      productName[indexForSaveChange][2] = inputProductQuantity.value;
+      productName[indexForSaveChange][3] = inputProductStatus.value;
+      clearDisplay();
+      displayProducts();
+    }
+  });
+
+  function displayProducts(){
+    inputProductName.value = "";
+    inputProductPrice.value = "";
+    inputProductQuantity.value = "";
+    inputProductStatus.value = "";
+    console.log(productName);
+    for (let i = 0; i < productName.length; i++) {
+      // khởi tạo hàng, từng hàng có cột name, cột nút edit, cột nút delete
+      createNewRow(i);
+    }
+  }
+  function clearDisplay(){
+    if (productName.length === 0){
+    }
+    else {
+      for (let i = 0; i < productName.length; i++) {
+        displayListProduct.removeChild(document.querySelector(".row_data"))
+      }
+    }
+  }
+
+  function createCellInfo(indexProductName){
+    newCellName = document.createElement("td");
+    newCellPrice = document.createElement("td");
+    newCellQuantity = document.createElement("td");
+    newCellStatus = document.createElement("td");
+
+    newCellName.innerHTML = productName[indexProductName][0];
+    newCellPrice.innerHTML = productName[indexProductName][1];
+    newCellQuantity.innerHTML = productName[indexProductName][2];
+    newCellStatus.innerHTML = productName[indexProductName][3];
+  }
+  function createCellEdit(indexProductName){
+    newCellEdit = document.createElement("td");
+    newButtonEdit = document.createElement("button");
+
+    newButtonEdit.innerHTML = "Edit";
+    newButtonEdit.addEventListener("click", function () {
+      inputProductName.value = productName[indexProductName][0];
+      inputProductPrice.value = productName[indexProductName][1];
+      inputProductQuantity.value = productName[indexProductName][2];
+      inputProductStatus.value = productName[indexProductName][3];
+      indexForSaveChange = indexProductName;
+    });
+    newCellEdit.appendChild(newButtonEdit);
+  }
+  function createCellDelete(indexProductName){
+    newCellDelete = document.createElement("td");
+    newButtonDelete = document.createElement("button");
+
+    newButtonDelete.innerHTML = "Delete";
+    newButtonDelete.addEventListener("click", function () {
+      displayListProduct.removeChild(newRow);
+      let productNameIndex = productName.indexOf(productName[indexProductName]);
+      productName.splice(productNameIndex, 1);
+      clearDisplay();
+      displayProducts();
+
+    });
+    newCellDelete.appendChild(newButtonDelete);
+  }
+  function createNewRow(indexProductName){
+    newRow = document.createElement("tr");
+    newRow.classList = 'row_data';
+    createCellInfo(indexProductName);
+    createCellEdit(indexProductName);
+    createCellDelete(indexProductName);
+    newRow.appendChild(newCellName);
+    newRow.appendChild(newCellPrice);
+    newRow.appendChild(newCellQuantity);
+    newRow.appendChild(newCellStatus);
+    newRow.appendChild(newCellEdit);
+    newRow.appendChild(newCellDelete);
+    displayListProduct.appendChild(newRow);
+  }
+  function createTableHeading(){
+    newRow = document.createElement("tr");
+    newHeadingName = document.createElement("th");
+    newHeadingPrice = document.createElement("th");
+    newHeadingQuantity = document.createElement("th");
+    newHeadingStatus = document.createElement("th");
+    newHeadingName.innerHTML = "Sản phẩm";
+    newHeadingPrice.innerHTML = "Giá tiền";
+    newHeadingQuantity.innerHTML = "Số lượng";
+    newHeadingStatus.innerHTML = "Trạng thái";
+
+    newRow.appendChild(newHeadingName);
+    newRow.appendChild(newHeadingPrice);
+    newRow.appendChild(newHeadingQuantity);
+    newRow.appendChild(newHeadingStatus);
+    displayListProduct.appendChild(newRow);
+  }
+</script>
+</body>
+</html>
