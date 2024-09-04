@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let lengthOfArray;
+        let array = [];
+        let sum = 0;
+        do{
+            lengthOfArray = Number(prompt("Enter length of array:"));
+            console.log("Length of array: " + lengthOfArray);
+        }while (lengthOfArray <= 0 || lengthOfArray > 50);
+
+        for (let i = 0; i < lengthOfArray; i++) {
+            array.push(Number(prompt("Enter number at index " + i + ":")));
+        }
+        console.log(array);
+
+        for (let i = 0; i < lengthOfArray; i++) {
+            if (i % 2 === 0 && array[i] % 2 !== 0){
+                sum = sum + array[i];
+            }
+        }
+        console.log("Sum: " + sum);
+    </script>
+</body>
+</html>

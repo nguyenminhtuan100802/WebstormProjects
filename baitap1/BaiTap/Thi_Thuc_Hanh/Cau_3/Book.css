@@ -1,0 +1,19 @@
+.container{
+    margin: 0px auto;
+    width: fit-content;
+}
+h1{
+    text-align: center;
+}
+.books{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+th{
+    border: 1px solid black;
+}
+.form_add_book{
+    margin-top: 100px;
+    border: 1px solid black;
+    opacity: 0;
+}

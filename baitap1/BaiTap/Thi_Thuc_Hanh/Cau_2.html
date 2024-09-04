@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        function kiemTraCapSoThanThiet(soDauTien, soThuHai){
+            let tongUocSoDauTien = 0;
+            let tongUocSoThuHai = 0;
+            for (let i = 1; i < soDauTien; i++) {
+                if (soDauTien % i === 0){
+                    tongUocSoDauTien = tongUocSoDauTien + i;
+                }
+            }
+            console.log(tongUocSoDauTien);
+
+            for (let i = 1; i < soThuHai; i++) {
+                if (soThuHai % i === 0){
+                    tongUocSoThuHai = tongUocSoThuHai + i;
+                }
+            }
+            console.log(tongUocSoThuHai);
+
+            if (soDauTien === tongUocSoThuHai && soThuHai === tongUocSoDauTien) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        console.log(kiemTraCapSoThanThiet(220, 284));
+        console.log(kiemTraCapSoThanThiet(123, 456));
+    </script>
+</body>
+</html>
