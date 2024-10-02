@@ -90,7 +90,7 @@ td div{
 }
 .pacman{
     background-color: black;
-    background-image: url("../PacmanV2/Images/PacmanMoveRight.gif");
+    /*background-image: url("../PacmanV2/Images/PacmanMoveRight.gif");*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

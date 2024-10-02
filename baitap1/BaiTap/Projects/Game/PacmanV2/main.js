@@ -11,8 +11,12 @@ let ghostPink = new Ghost(12);
 let ghostBlue = new Ghost(13);
 let count = 0;
 let audioStartGame = document.querySelector(".myAudioStartGame");
+let keyMoveRightPressed = true;
+let keyMoveLeftPressed = false;
+let keyMoveUpPressed = false;
+let keyMoveDownPressed = false;
 setInterval(function () {
-    console.log("test");
+    // console.log("test");
     audioStartGame.play();
 }, 1000);
 
@@ -112,7 +116,7 @@ buttonPlayAgain.addEventListener("click", function () {
     displayLose.style.opacity = "0";
 })
 
-drawMap();
+drawMap(keyMoveRightPressed, keyMoveLeftPressed, keyMoveUpPressed, keyMoveDownPressed);
 ghostAutoMove(objectInGamePacman.GHOST_RED, delayForMovement);
 ghostAutoMove(objectInGamePacman.GHOST_ORANGE, delayForMovement);
 ghostAutoMove(objectInGamePacman.GHOST_PINK, delayForMovement);
@@ -122,24 +126,40 @@ window.addEventListener("keypress", function (e) {
     // console.log(e.key);
     if (objectInGamePacman.PACMAN_PLAYER.flagLose === false){
         if (e.key === "d") {
+            keyMoveRightPressed = true;
+            keyMoveLeftPressed = false;
+            keyMoveUpPressed = false;
+            keyMoveDownPressed = false;
             objectInGamePacman.PACMAN_PLAYER.moveRight(layout, objectInGamePacman);
         }
         else if (e.key === "w") {
+            keyMoveRightPressed = false;
+            keyMoveLeftPressed = false;
+            keyMoveUpPressed = true;
+            keyMoveDownPressed = false;
             objectInGamePacman.PACMAN_PLAYER.moveUp(layout, objectInGamePacman);
         }
         else if (e.key === "a") {
+            keyMoveRightPressed = false;
+            keyMoveLeftPressed = true;
+            keyMoveUpPressed = false;
+            keyMoveDownPressed = false;
             objectInGamePacman.PACMAN_PLAYER.moveLeft(layout, objectInGamePacman);
         }
         else if (e.key === "s") {
+            keyMoveRightPressed = false;
+            keyMoveLeftPressed = false;
+            keyMoveUpPressed = false;
+            keyMoveDownPressed = true;
             objectInGamePacman.PACMAN_PLAYER.moveDown(layout, objectInGamePacman);
         }
-        drawMap();
+        drawMap(keyMoveRightPressed, keyMoveLeftPressed, keyMoveUpPressed, keyMoveDownPressed);
         score.innerHTML = objectInGamePacman.PACMAN_PLAYER.score;
     }
 });
 
 
-function drawMap() {
+function drawMap(keyRightPressed, keyLeftPressed, keyUpPressed, keyDownPressed) {
     html = "";
     for (let i = 0; i < layout.length; i++) {
         if (count === 0){
@@ -180,6 +200,20 @@ function drawMap() {
     }
     // console.log(html)
     grid.innerHTML = html;
+
+    let bgImage = document.querySelector('.pacman');
+    if (keyRightPressed){
+        bgImage.style.backgroundImage = "url('../PacmanV2/Images/PacmanMoveRight.gif')";
+    }
+    else if (keyLeftPressed){
+        bgImage.style.backgroundImage = "url('../PacmanV2/Images/PacmanMoveLeft.gif')";
+    }
+    else if (keyUpPressed){
+        bgImage.style.backgroundImage = "url('../PacmanV2/Images/PacmanMoveUp.gif')";
+    }
+    else if (keyDownPressed){
+        bgImage.style.backgroundImage = "url('../PacmanV2/Images/PacmanMoveDown.gif')";
+    }
 }
 
 function ghostAutoMove(ghost, timerDelayForMovement){
@@ -187,7 +221,7 @@ function ghostAutoMove(ghost, timerDelayForMovement){
         // console.log("lose: " + objectInGamePacman.PACMAN_PLAYER.flagLose);
         if (objectInGamePacman.PACMAN_PLAYER.flagLose === false){
             ghost.autoMove(layout, objectInGamePacman);
-            drawMap();
+            drawMap(keyMoveRightPressed, keyMoveLeftPressed, keyMoveUpPressed, keyMoveDownPressed);
         }
     }, timerDelayForMovement);
 }
