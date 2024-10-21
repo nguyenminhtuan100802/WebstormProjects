@@ -1,0 +1,115 @@
+#container{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+}
+#body{
+    border: 1px solid blue;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#nav{
+    border: 1px solid red;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2a213a
+}
+p{
+    color: #dddddd;
+    display: flex;
+    align-items: center;
+}
+#explode{
+    height: 40vh;
+}
+#imgZing{
+    width: 100%;
+}
+.imgExplode{
+    width: 30px;
+    height: 30px;
+}
+.imgButtonPlay{
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: 10px;
+    visibility: hidden;
+}
+#explodeLive{
+    background-color: red;
+    margin-left: 10px;
+    font-size: 10px;
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 20%;
+}
+#scroll{
+    overflow: scroll;
+    height: 60vh;
+}
+#mainView{
+    border: 1px solid blue;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#header{
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #2a213a;
+}
+.imgFindSong{
+    width: 40px;
+    height: 40px;
+}
+#findSong{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    background-color: #2a213a;
+}
+#inputSong{
+    background-color: #2a213a;
+    color: #dddddd;
+    font-size: 20px;
+    height:30px;
+    margin: 5px auto;
+}
+#inputSong::placeholder{
+    color: #dddddd;
+}
+#buttonUpdateAccount{
+    margin: 2px auto;
+    background-color: #9b4de0;
+    color: #dddddd;
+    font-weight: bold;
+    border-radius: 40px;
+    font-size: 15px;
+}
+#main{
+    border: 1px solid blue;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+#footer{
+    border: 1px solid green;
+    height: 20vh;
+}
+p:hover {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+p:hover .imgButtonPlay{
+    visibility: visible;
+}
+#buttonUpdateAccount:hover{
+    background-color: #8b2bdf;
+}
